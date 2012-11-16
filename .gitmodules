@@ -1,0 +1,3 @@
+[submodule "burpee"]
+	path = burpee
+	url = git://github.com/GDSSecurity/burpee.git
