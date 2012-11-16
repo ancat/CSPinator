@@ -3,6 +3,7 @@ sys.path.append('burpee')
 import gds.pub.burp as burp
 
 def post_process(rules):
+    # Remove urls if they appear in the default directive
     for i in rules.keys():
         if i == 'default-src':
             continue
@@ -32,6 +33,7 @@ def make_header(rules, report_uri='', mode=None):
     return string
 
 def determine_rule_type(request):
+    # Could be done better...
     path = request.url.path
     if ".jpg" in path or ".jpeg" in path or ".gif" in path or ".png" in path:
         return "img-src"
@@ -44,6 +46,7 @@ def determine_rule_type(request):
     return "default-src"
 
 def wildcardify(domains):
+    # Also could be done better
     temp = {}
     replace = []
     final = []
@@ -65,6 +68,8 @@ def wildcardify(domains):
 
 HOST = sys.argv[2]
 HOSTS = []
+
+# Not all rules are implemented
 RULES = {
     'default-src':[],
     'img-src':[],
